@@ -22,7 +22,7 @@ const app = express();
 
 const corsOptions = {
   origin: [
-    "http://localhost:5173"  // ← No space before http
+    "https://ecoglow.ae"  // ← No space before http
   ],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
