@@ -11,10 +11,10 @@ import homeServicesRoutes from "./routes/servicesHomeRoutes.js";
 import bannerRoutes from "./routes/homeBannerRoutes.js";
 import advantagesRoutes from "./routes/advantagesRoutes.js";
 import messageRouters from "./routes/messageRoutes.js";
-import contactRoutes from "./routes/contactRoutes.js"
+import contactRoutes from "./routes/contactRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
-import bookingRoutes from "./routes/bookingRoutes.js"
-import footerRoutes from "./routes/footerRouter.js"
+import bookingRoutes from "./routes/bookingRoutes.js";
+import footerRoutes from "./routes/footerRouter.js";
 import cors from "cors";
 import path from "path";
 
@@ -22,16 +22,18 @@ const app = express();
 
 const corsOptions = {
   origin: [
-    "https://ecoglow.ae"  // ← No space before http
+    "https://ecoglow.ae",
+    "https://www.ecoglow.ae"
   ],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
 };
+
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//  Serve uploaded images
+// Serve uploaded images
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 const PORT = process.env.PORT || 5001;
@@ -51,12 +53,13 @@ app.use("/banner", bannerRoutes);
 app.use("/advantages", advantagesRoutes);
 app.use("/message", messageRouters);
 app.use("/admin", adminRoutes);
-app.use("/contact",contactRoutes)
-app.use("/bookings",bookingRoutes)
-app.use("/footer",footerRoutes)
+app.use("/contact", contactRoutes);
+app.use("/bookings", bookingRoutes);
+app.use("/footer", footerRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
+// Listen on 0.0.0.0 for Render deployment
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });
 
 connectDB();
